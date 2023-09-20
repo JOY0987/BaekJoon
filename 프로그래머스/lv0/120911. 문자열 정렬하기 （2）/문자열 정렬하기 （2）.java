@@ -10,6 +10,7 @@ class Solution {
         
         my_string = String.valueOf(strings);
         
+        
         return my_string;
     }
 }
