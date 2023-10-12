@@ -2,9 +2,8 @@ import java.util.*;
 
 class Solution {
     public long solution(long n) {
-        Double x = Math.sqrt(n);
-        
-        if (x == x.intValue()) {
+        double x = Math.ceil(Math.sqrt(n));
+        if ((long) (x * x) == n) {
             return (long) ((x + 1) * (x + 1));
         } else {
             return -1;
