@@ -1,30 +1,29 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(int[] lottos, int[] win_nums) {
-        int[] answer = {7, 7};
-        int zeroCnt = 0;
-        // List<Integer> winList = new ArrayList<>();
+       Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+        int zeroCount = 0;
 
-        // for (int i : win_nums) {
-        //     winList.add(i);
-        // }
-        
-        for (int i : lottos) {
-            if (i == 0) {
-                answer[0]--;
-            } else {
-                for (int j : win_nums) {
-                    if (i == j) {
-                        answer[0]--;
-                        answer[1]--;
-                    }
-                }
+        for(int lotto : lottos) {
+            if(lotto == 0) {
+                zeroCount++;
+                continue;
             }
+            map.put(lotto, true);
         }
-        
-        for (int i = 0; i < answer.length; i++) {
-            if (answer[i] == 7) answer[i] = 6;
+
+
+        int sameCount = 0;
+        for(int winNum : win_nums) {
+            if(map.containsKey(winNum)) sameCount++;
         }
-        
-        return answer;
+
+        int maxRank = 7 - (sameCount + zeroCount);
+        int minRank = 7 - sameCount;
+        if(maxRank > 6) maxRank = 6;
+        if(minRank > 6) minRank = 6;
+
+        return new int[] {maxRank, minRank};
     }
 }
